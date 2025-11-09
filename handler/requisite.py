@@ -14,6 +14,28 @@ class RequisiteHandler:
 
         return result
 
+    def isDuplicate(self, classid, reqid, dao):
+        db_record = dao.getRequisiteByIDs(classid, reqid)
+
+        if not db_record:
+            return False
+
+        db_record = self.mapRequisite(db_record)
+        print(debug, db_record, "type:", type(db_record))
+
+        # convert data from database to tuple
+        from_database = (str(db_record['classid']), str(db_record['reqid']))
+        print(debug, from_database, "type:", type(from_database))
+
+        # convert keys from data to insert to tuple
+        to_insert = (classid, reqid)
+        print(debug, to_insert, "type:", type(to_insert))
+        
+        print(debug, from_database == to_insert)
+
+        # compare both tuples and return if is duplicate
+        return from_database == to_insert
+
 
     # called by method POST for endpoint '/requisite'
     def insertRequisite(self, req_json):
@@ -25,8 +47,9 @@ class RequisiteHandler:
         prereq = req_json['prereq']
 
         if classid and reqid and prereq:
-            if classid == reqid:
+            if classid == reqid or self.isDuplicate(classid, reqid, dao):
                 return jsonify(Error = "Conflict"), 409
+
 
             pk = dao.insertRequisite(classid, reqid, prereq)
             temp = (classid, reqid, prereq)
@@ -45,7 +68,7 @@ class RequisiteHandler:
 
         dao = RequisiteDAO()
         requisite = dao.getRequisiteByIDs(classid, reqid)
-
+        
         if not requisite:
             return jsonify(Error = "Not Found"), 404
         else:

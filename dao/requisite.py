@@ -37,6 +37,10 @@ class RequisiteDAO:
             print(debug, "Database version:", db_ver)
             cursor.close()
 
+    
+    def checkDuplicate(self, classid, reqid):
+        return self.getRequisiteByIDs(classid, reqid)
+
 
     def insertRequisite(self, classid, reqid, prereq):
         cursor = self.conn.cursor()
