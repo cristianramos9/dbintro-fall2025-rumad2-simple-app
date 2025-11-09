@@ -54,6 +54,9 @@ class RequisiteHandler:
 
     # called by method DELETE for endpoint '/requisite/{classid}/{reqid}'
     def deleteRequisiteByIDs(self, classid, reqid):
+        if classid == reqid:
+            return jsonify(Error = "Conflict"), 409
+
         dao = RequisiteDAO()
         temp = dao.deleteRequisiteByIDs(classid, reqid)
 
