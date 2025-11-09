@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 from handler.requisite import RequisiteHandler
+from handler.stats import StatsHandler
 
 app = Flask(__name__)
 CORS(app)
@@ -33,6 +34,18 @@ def getRequisiteByIDs(classid, reqid):
     else:
         return jsonify(Error = "Method Not Allowed"), 405
 
+@app.route('/teamCRJ/stats/sections-by-day')
+def getSectionsByDay():
+    year = request.args.get('year')
+    semester = request.args.get('semester')
+
+    print(year)
+    print(semester)
+    print(year, semester)
+#   tmp_results = [{}]
+#   return jsonify(results = tmp_results)
+    return StatsHandler().getSectionsByDay()
+#   return jsonify([year, semester])
 
 if __name__ == '__main__':
     app.run(debug=True)
