@@ -31,3 +31,13 @@ class RequisiteHandler:
             return jsonify(result)
         else:
             return jsonify(Error = "Bad Request"), 400
+
+
+    def getRequisiteByIDs(self, classid, reqid):
+        dao = RequisiteDAO()
+        requisite = dao.getRequisiteByIDs(classid, reqid)
+
+        if not requisite:
+            return jsonify(Error = "Not Found"), 404
+        else:
+            return jsonify(self.mapRequisite(requisite))

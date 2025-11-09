@@ -50,3 +50,12 @@ class RequisiteDAO:
         self.conn.commit()
 
         return pk
+
+    def getRequisiteByIDs(self, classid, reqid):
+        cursor = self.conn.cursor()
+        query = "SELECT classid, reqid, prereq FROM requisite WHERE classid = %s AND reqid = %s"
+        cursor.execute(query, (classid, reqid))
+
+        result = cursor.fetchone()
+        
+        return result

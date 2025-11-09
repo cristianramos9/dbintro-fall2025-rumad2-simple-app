@@ -23,6 +23,14 @@ def insertRequisite():
     else:
         return jsonify(Error = "Method Not Allowed"), 405
 
+# route for requesting requisite
+@app.route('/teamCRJ/requisite/<int:classid>/<int:reqid>', methods=method_list)
+def getRequisiteByIDs(classid, reqid):
+    if request.method == 'GET':
+        return RequisiteHandler().getRequisiteByIDs(classid, reqid)
+    else:
+        return jsonify(Error = "Method Not Allowed"), 405
+
 
 if __name__ == '__main__':
     app.run(debug=True)
