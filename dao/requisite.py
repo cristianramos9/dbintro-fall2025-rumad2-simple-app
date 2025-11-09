@@ -55,7 +55,7 @@ class RequisiteDAO:
 
     def getRequisiteByIDs(self, classid, reqid):
         cursor = self.conn.cursor()
-        query = "SELECT classid, reqid, prereq FROM requisite WHERE classid = %s AND reqid = %s"
+        query = "SELECT classid, reqid, prereq FROM requisite WHERE classid IN (SELECT cid FROM class) AND reqid IN (SELECT cid FROM class) and classid = %s AND reqid = %s"
         cursor.execute(query, (classid, reqid))
 
         result = cursor.fetchone()
@@ -65,7 +65,7 @@ class RequisiteDAO:
 
     def deleteRequisiteByIDs(self, classid, reqid):
         cursor = self.conn.cursor()
-        query = "DELETE FROM requisite WHERE classid = %s AND reqid = %s"
+        query = "DELETE FROM requisite WHERE classid IN (SELECT cid FROM class) AND reqid IN (SELECT cid FROM class) and classid = %s AND reqid = %s"
         cursor.execute(query, (classid, reqid))
 
         rowcount = cursor.rowcount

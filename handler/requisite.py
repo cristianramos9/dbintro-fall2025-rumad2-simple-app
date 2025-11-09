@@ -2,6 +2,8 @@ from flask import jsonify
 
 from dao.requisite import RequisiteDAO
 
+debug = "DEBUG:"
+
 class RequisiteHandler:
     def mapRequisite(self, req):
         result = {}
@@ -23,6 +25,9 @@ class RequisiteHandler:
         prereq = req_json['prereq']
 
         if classid and reqid and prereq:
+            if classid == reqid:
+                return jsonify(Error = "Conflict"), 409
+
             pk = dao.insertRequisite(classid, reqid, prereq)
             temp = (classid, reqid, prereq)
             result = self.mapRequisite(temp)
@@ -35,6 +40,9 @@ class RequisiteHandler:
 
     # called by method GET for endpoint '/requisite/{classid}/{reqid}'
     def getRequisiteByIDs(self, classid, reqid):
+        if classid == reqid:
+            return jsonify(Error = "Conflict"), 409
+
         dao = RequisiteDAO()
         requisite = dao.getRequisiteByIDs(classid, reqid)
 
