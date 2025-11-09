@@ -36,3 +36,17 @@ class RequisiteDAO:
             db_ver = cursor.fetchone()
             print(debug, "Database version:", db_ver)
             cursor.close()
+
+    def insertRequisite(self, classid, reqid, prereq):
+        cursor = self.conn.cursor()
+        query = "INSERT INTO requisite (classid, reqid, prereq) VALUES (%s, %s, %s) RETURNING (classid, reqid)"
+        cursor.execute(query, (classid, reqid, prereq))
+
+        pk = cursor.fetchone()
+
+        print(debug, "pk", pk, type(pk), len(list(pk)))
+        print(debug, "eval(pk[0])", eval(pk[0]), pk[0], type(eval(pk[0])), len(eval(pk[0])))
+
+        self.conn.commit()
+
+        return pk
