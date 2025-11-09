@@ -33,6 +33,7 @@ class RequisiteHandler:
             return jsonify(Error = "Bad Request"), 400
 
 
+    # called by method GET for endpoint '/requisite/{classid}/{reqid}'
     def getRequisiteByIDs(self, classid, reqid):
         dao = RequisiteDAO()
         requisite = dao.getRequisiteByIDs(classid, reqid)
@@ -41,3 +42,14 @@ class RequisiteHandler:
             return jsonify(Error = "Not Found"), 404
         else:
             return jsonify(self.mapRequisite(requisite))
+
+
+    # called by method DELETE for endpoint '/requisite/{classid}/{reqid}'
+    def deleteRequisiteByIDs(self, classid, reqid):
+        dao = RequisiteDAO()
+        temp = dao.deleteRequisiteByIDs(classid, reqid)
+
+        if temp:
+            return jsonify(DeleteStatus = "OK"), 200
+        else:
+            return jsonify(DeleteStatus = "Not Found"), 404

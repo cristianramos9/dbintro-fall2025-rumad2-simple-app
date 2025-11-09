@@ -28,6 +28,8 @@ def insertRequisite():
 def getRequisiteByIDs(classid, reqid):
     if request.method == 'GET':
         return RequisiteHandler().getRequisiteByIDs(classid, reqid)
+    elif request.method == 'DELETE':
+        return RequisiteHandler().deleteRequisiteByIDs(classid, reqid)
     else:
         return jsonify(Error = "Method Not Allowed"), 405
 

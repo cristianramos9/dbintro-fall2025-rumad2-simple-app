@@ -37,6 +37,7 @@ class RequisiteDAO:
             print(debug, "Database version:", db_ver)
             cursor.close()
 
+
     def insertRequisite(self, classid, reqid, prereq):
         cursor = self.conn.cursor()
         query = "INSERT INTO requisite (classid, reqid, prereq) VALUES (%s, %s, %s) RETURNING (classid, reqid)"
@@ -51,6 +52,7 @@ class RequisiteDAO:
 
         return pk
 
+
     def getRequisiteByIDs(self, classid, reqid):
         cursor = self.conn.cursor()
         query = "SELECT classid, reqid, prereq FROM requisite WHERE classid = %s AND reqid = %s"
@@ -59,3 +61,15 @@ class RequisiteDAO:
         result = cursor.fetchone()
         
         return result
+
+
+    def deleteRequisiteByIDs(self, classid, reqid):
+        cursor = self.conn.cursor()
+        query = "DELETE FROM requisite WHERE classid = %s AND reqid = %s"
+        cursor.execute(query, (classid, reqid))
+
+        rowcount = cursor.rowcount
+
+        self.conn.commit()
+
+        return rowcount == 1
