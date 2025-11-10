@@ -36,15 +36,30 @@ def getRequisiteByIDs(classid, reqid):
 
 @app.route('/teamCRJ/stats/sections-by-day')
 def getSectionsByDay():
+    # get arguments passed to endpoint
     year = request.args.get('year')
     semester = request.args.get('semester')
 
     print(year)
     print(semester)
     print(year, semester)
+
+    if year and not semester:
+#       return jsonify("year DETECTED, no semester")
+        return StatsHandler().getSectionsByDayUsingYear(year)
+    elif not year and semester:
+#       return jsonify("semester DETECTED, no year")
+        return StatsHandler().getSectionsByDayUsingSemester(semester)
+    elif year and semester:
+#       return jsonify("BOTH year and semester DETECTED")
+        return StatsHandler().getSectionsByDayUsingYearSemester(year, semester)
+    else:
+        return StatsHandler().getSectionsByDay()
+
+
+
 #   tmp_results = [{}]
 #   return jsonify(results = tmp_results)
-    return StatsHandler().getSectionsByDay()
 #   return jsonify([year, semester])
 
 if __name__ == '__main__':
