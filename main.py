@@ -3,6 +3,7 @@ from flask_cors import CORS
 
 from handler.requisite import RequisiteHandler
 from handler.stats_sections_by_day import SectionsByDayHandler
+from handler.stats_multi_room_classes import MultiRoomClassesHandler
 
 app = Flask(__name__)
 CORS(app)
@@ -57,6 +58,30 @@ def getSectionsByDay():
         return SectionsByDayHandler().getSectionsByDay()
 
 
+@app.route('/teamCRJ/stats/multi-room-classes')
+def getMultiRoomClasses():
+    # get arguments passed to endpoint
+    year = request.args.get('year')
+    semester = request.args.get('semester')
+    limit = request.args.get('limit')
+    orderby = request.args.get('orderby')
+
+    if year and not semester and not limit and not orderby:
+        return "year only"
+    elif not year and semester and not limit and not orderby:
+        return "semester only"
+    elif year and not semester and limit and not orderby:
+        return "limit only"
+    elif year and not semester and not limit and orderby:
+        return "orderby only"
+#   elif year and not semester and not limit and not orderby:
+#       return "year only"
+#   elif year and not semester and not limit and not orderby:
+#       return "year only"
+#   elif year and not semester and not limit and not orderby:
+#       return "year only"
+    else:
+        return MultiRoomClassesHandler().getAllMultiRoomClasses()
 
 #   tmp_results = [{}]
 #   return jsonify(results = tmp_results)
