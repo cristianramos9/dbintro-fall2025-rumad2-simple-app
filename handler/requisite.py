@@ -14,6 +14,13 @@ class RequisiteHandler:
 
         return result
 
+
+    def existInClass(self, classid, reqid, dao):
+        db_record = dao.getRequisiteByIDs(classid, reqid)
+        print(debug, db_record, "type:", type(db_record))
+
+        return db_record == None
+
     def isDuplicate(self, classid, reqid, dao):
         db_record = dao.getRequisiteByIDs(classid, reqid)
 
@@ -37,6 +44,7 @@ class RequisiteHandler:
         return from_database == to_insert
 
 
+
     # called by method POST for endpoint '/requisite'
     def insertRequisite(self, req_json):
         dao = RequisiteDAO()
@@ -49,6 +57,8 @@ class RequisiteHandler:
         if classid and reqid and prereq:
             if classid == reqid or self.isDuplicate(classid, reqid, dao):
                 return jsonify(Error = "Conflict"), 409
+#           if self.existInClass(classid, reqid, dao):
+#               return jsonify(Error = "Invalid ids, not found"), 404
 
 
             pk = dao.insertRequisite(classid, reqid, prereq)
@@ -87,3 +97,5 @@ class RequisiteHandler:
             return jsonify(DeleteStatus = "OK"), 200
         else:
             return jsonify(DeleteStatus = "Not Found"), 404
+
+
