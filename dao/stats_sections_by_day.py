@@ -12,7 +12,7 @@ else:
 
 import psycopg2
 
-class StatsDAO:
+class SectionsByDayDAO:
     def __init__(self):
         # initialize database
         connect_url = "dbname=%s \

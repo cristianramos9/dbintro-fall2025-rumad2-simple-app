@@ -1,12 +1,12 @@
 from flask import jsonify
 
-from dao.stats import StatsDAO
+from dao.stats_sections_by_day import SectionsByDayDAO
 
 debug = "DEBUG:"
 
-class StatsHandler:
+class SectionsByDayHandler:
     def getSectionsByDay(self):
-        dao = StatsDAO()
+        dao = SectionsByDayDAO()
 
         days = ['L','M','W','J','V','S','D']
         result_list = []
@@ -22,7 +22,7 @@ class StatsHandler:
 
     
     def getSectionsByDayUsingYear(self, year):
-        dao = StatsDAO()
+        dao = SectionsByDayDAO()
 
         days = ['L','M','W','J','V','S','D']
         result_list = []
@@ -38,7 +38,7 @@ class StatsHandler:
 
 
     def getSectionsByDayUsingSemester(self, semester):
-        dao = StatsDAO()
+        dao = SectionsByDayDAO()
 
         days = ['L','M','W','J','V','S','D']
         result_list = []
@@ -54,7 +54,7 @@ class StatsHandler:
     
 
     def getSectionsByDayUsingYearSemester(self, year, semester):
-        dao = StatsDAO()
+        dao = SectionsByDayDAO()
 
         days = ['L','M','W','J','V','S','D']
         result_list = []

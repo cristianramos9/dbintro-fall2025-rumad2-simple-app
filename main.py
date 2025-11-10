@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 
 from handler.requisite import RequisiteHandler
-from handler.stats import StatsHandler
+from handler.stats_sections_by_day import SectionsByDayHandler
 
 app = Flask(__name__)
 CORS(app)
@@ -46,15 +46,15 @@ def getSectionsByDay():
 
     if year and not semester:
 #       return jsonify("year DETECTED, no semester")
-        return StatsHandler().getSectionsByDayUsingYear(year)
+        return SectionsByDayHandler().getSectionsByDayUsingYear(year)
     elif not year and semester:
 #       return jsonify("semester DETECTED, no year")
-        return StatsHandler().getSectionsByDayUsingSemester(semester)
+        return SectionsByDayHandler().getSectionsByDayUsingSemester(semester)
     elif year and semester:
 #       return jsonify("BOTH year and semester DETECTED")
-        return StatsHandler().getSectionsByDayUsingYearSemester(year, semester)
+        return SectionsByDayHandler().getSectionsByDayUsingYearSemester(year, semester)
     else:
-        return StatsHandler().getSectionsByDay()
+        return SectionsByDayHandler().getSectionsByDay()
 
 
 
