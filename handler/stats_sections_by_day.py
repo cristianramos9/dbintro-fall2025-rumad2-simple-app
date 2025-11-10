@@ -5,6 +5,7 @@ from dao.stats_sections_by_day import SectionsByDayDAO
 debug = "DEBUG:"
 
 class SectionsByDayHandler:
+    semester_list = ("Fall", "Spring", "V1", "V2")
     def getSectionsByDay(self):
         dao = SectionsByDayDAO()
 
@@ -22,6 +23,13 @@ class SectionsByDayHandler:
 
     
     def getSectionsByDayUsingYear(self, year):
+        # validate year
+        print("year a number?", year.isnumeric())
+        print("year 4 digit?", len(year))
+        print("year 4 digit?", len(year) == 4)
+        if len(year) != 4 or not year.isnumeric():
+            return jsonify(Error = "Bad Request"), 400
+
         dao = SectionsByDayDAO()
 
         days = ['L','M','W','J','V','S','D']
@@ -38,6 +46,9 @@ class SectionsByDayHandler:
 
 
     def getSectionsByDayUsingSemester(self, semester):
+        if semester not in self.semester_list:
+            return jsonify(Error = "Bad Request"), 400
+
         dao = SectionsByDayDAO()
 
         days = ['L','M','W','J','V','S','D']
@@ -54,6 +65,12 @@ class SectionsByDayHandler:
     
 
     def getSectionsByDayUsingYearSemester(self, year, semester):
+        if len(year) != 4 or not year.isnumeric():
+            return jsonify(Error = "Bad Request"), 400
+        if semester not in self.semester_list:
+            return jsonify(Error = "Bad Request"), 400
+
+
         dao = SectionsByDayDAO()
 
         days = ['L','M','W','J','V','S','D']
