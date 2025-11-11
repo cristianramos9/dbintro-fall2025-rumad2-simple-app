@@ -15,7 +15,7 @@ def default():
     
     return jsonify(message)
 
-method_list = ['GET', 'POST', 'PUT', 'DELETE']
+method_list = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 
 # route for inserting new requisite
 @app.route('/teamCRJ/requisite', methods=method_list)
@@ -35,15 +35,21 @@ def getRequisiteByIDs(classid, reqid):
     else:
         return jsonify(Error = "Method Not Allowed"), 405
 
-@app.route('/teamCRJ/stats/sections-by-day')
+@app.route('/teamCRJ/stats/sections-by-day', methods=method_list)
 def getSectionsByDay():
-    # get arguments passed to endpoint
-    year = request.args.get('year')
-    semester = request.args.get('semester')
+    if request.method == 'GET':
+        # get arguments passed to endpoint
+        year = request.args.get('year')
+        semester = request.args.get('semester')
 
-    print(year)
-    print(semester)
-    print(year, semester)
+        print(year)
+        print(semester)
+        print(year, semester)
+
+        return SectionsByDayHandler().getSectionsByDayUsingParameter(year, semester)
+    else:
+        return jsonify(Error = "Method Not Allowed"), 405
+
 
 #   if year and not semester:
 #       return jsonify("year DETECTED, no semester")
@@ -57,20 +63,24 @@ def getSectionsByDay():
 #   else:
 #       return SectionsByDayHandler().getSectionsByDay()
 
-    return SectionsByDayHandler().getSectionsByDayUsingParameter(year, semester)
 
-@app.route('/teamCRJ/stats/multi-room-classes')
+@app.route('/teamCRJ/stats/multi-room-classes', methods=method_list)
 def getMultiRoomClasses():
-    # get arguments passed to endpoint
-    year = request.args.get('year')
-    semester = request.args.get('semester')
-    limit = request.args.get('limit')
-    orderby = request.args.get('orderby')
+    if request.method == 'GET':
+        # get arguments passed to endpoint
+        year = request.args.get('year')
+        semester = request.args.get('semester')
+        limit = request.args.get('limit')
+        orderby = request.args.get('orderby')
 
-    print("DEBUG: year:", year)
-    print("DEBUG: semester:", semester)
-    print("DEBUG: limit:", limit)
-    print("DEBUG: orderby:", orderby)
+        print("DEBUG: year:", year)
+        print("DEBUG: semester:", semester)
+        print("DEBUG: limit:", limit)
+        print("DEBUG: orderby:", orderby)
+
+        return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)
+    else:
+        return jsonify(Error = "Method Not Allowed"), 405
 
     # check if at least one of the query parameters is not null
 #   if year or semester:
@@ -78,7 +88,6 @@ def getMultiRoomClasses():
 #   else:
 #       return MultiRoomClassesHandler().getAllMultiRoomClasses()
 
-    return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)
 
 if __name__ == '__main__':
     app.run(debug=True)
