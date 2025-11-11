@@ -75,7 +75,7 @@ def getMultiRoomClasses():
 
         print("DEBUG: year:", year)
         print("DEBUG: semester:", semester)
-        print("DEBUG: limit:", limit)
+        print("DEBUG: limit:", limit, type(limit))
         print("DEBUG: orderby:", orderby)
 
         return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)

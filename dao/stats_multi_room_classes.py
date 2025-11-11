@@ -77,6 +77,7 @@ class MultiRoomClassesDAO:
         if limit:
             query = query + " LIMIT %s" % limit
             print(query)
+        print(query)
         cursor.execute(query)
 #       result = cursor.fetchone()
         for item in cursor:

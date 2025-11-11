@@ -19,18 +19,26 @@ class MultiRoomClassesHandler:
 
     def getMultiRoomClassesUsingParameter(self, year=None, semester=None, limit=None, orderby=None):
 
-        if year:
+        if year != None:
             # validate year
-            pass
-        if semester:
+            if len(year) != 4 or not year.isnumeric():
+                return jsonify(Error = "Bad Request"), 400
+        if semester != None:
             # validate semester
-            pass
-        if limit:
+            if not semester.isalnum() or semester.lower() not in ['fall', 'spring', 'v1', 'v2']:
+                return jsonify(Error = "Bad Request"), 400
+            semester = semester[0].upper() + semester[1:]
+        if limit != None:
             # validate limit
-            pass
-        if orderby:
+            if not limit.isnumeric() or len(limit) > 2 or int(limit) > 10 or int(limit) < 1:
+                return jsonify(Error = "Bad Request"), 400
+        else:
+            limit = 5
+        if orderby != None:
+            print("alpha:", orderby.isalpha())
             # validate orderby
-            pass
+            if not orderby.isalpha() or orderby.lower() not in ['asc', 'desc']:
+                return jsonify(Error = "Bad Request"), 400
 
         dao = MultiRoomClassesDAO()
 
@@ -51,9 +59,3 @@ class MultiRoomClassesHandler:
 
 
         return jsonify(class_list), 200
-
-
-
-
-#       result = []
-
