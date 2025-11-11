@@ -72,11 +72,12 @@ def getMultiRoomClasses():
     print("DEBUG: orderby:", orderby)
 
     # check if at least one of the query parameters is not null
-    if year or semester:
-        return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)
-    else:
-        return MultiRoomClassesHandler().getAllMultiRoomClasses()
+#   if year or semester:
+#       return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)
+#   else:
+#       return MultiRoomClassesHandler().getAllMultiRoomClasses()
 
+    return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)
 
 if __name__ == '__main__':
     app.run(debug=True)
