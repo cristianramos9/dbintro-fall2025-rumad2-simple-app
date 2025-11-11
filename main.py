@@ -45,18 +45,19 @@ def getSectionsByDay():
     print(semester)
     print(year, semester)
 
-    if year and not semester:
+#   if year and not semester:
 #       return jsonify("year DETECTED, no semester")
-        return SectionsByDayHandler().getSectionsByDayUsingYear(year)
-    elif not year and semester:
+#       return SectionsByDayHandler().getSectionsByDayUsingYear(year)
+#   elif not year and semester:
 #       return jsonify("semester DETECTED, no year")
-        return SectionsByDayHandler().getSectionsByDayUsingSemester(semester)
-    elif year and semester:
+#       return SectionsByDayHandler().getSectionsByDayUsingSemester(semester)
+#   elif year and semester:
 #       return jsonify("BOTH year and semester DETECTED")
-        return SectionsByDayHandler().getSectionsByDayUsingYearSemester(year, semester)
-    else:
-        return SectionsByDayHandler().getSectionsByDay()
+#       return SectionsByDayHandler().getSectionsByDayUsingYearSemester(year, semester)
+#   else:
+#       return SectionsByDayHandler().getSectionsByDay()
 
+    return SectionsByDayHandler().getSectionsByDayUsingParameter(year, semester)
 
 @app.route('/teamCRJ/stats/multi-room-classes')
 def getMultiRoomClasses():

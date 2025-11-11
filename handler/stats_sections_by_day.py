@@ -85,3 +85,28 @@ class SectionsByDayHandler:
 
         return jsonify(result_list)
 
+
+    def getSectionsByDayUsingParameter(self, year=None, semester=None):
+        if year != None:
+            if len(year) != 4 or not year.isnumeric():
+                return jsonify(Error = "Bad Request"), 400
+        if semester != None:
+            if semester not in self.semester_list:
+                return jsonify(Error = "Bad Request"), 400
+
+
+        dao = SectionsByDayDAO()
+
+        days = ['L','M','W','J','V','S','D']
+#       days = ['L']
+        result_list = []
+        
+        result = dao.getSectionCountUsingParameter(year, semester)
+        print(debug, result, "type:", type(result))
+
+        for day in days:
+            wday = { "day" : day, "sections" : result[day] }
+            result_list.append(wday)
+
+        return jsonify(result_list)
+

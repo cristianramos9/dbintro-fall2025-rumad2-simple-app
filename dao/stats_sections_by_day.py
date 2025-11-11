@@ -147,3 +147,50 @@ class SectionsByDayDAO:
             
         return rday
 
+
+    def getSectionCountUsingParameter(self, year, semester):
+        if year:
+            year = "'" + year + "'"
+        else:
+            year = 'NULL'
+        if semester:
+            semester = "'" + semester + "'"
+        else:
+            semester = 'NULL'
+
+        days_sub = ["'%L%'", "'%M%'", "'%W%'", "'%J%'", "'%V%'", "'%S%'", "'%D%'", ]
+        print("days:", days_sub[6][2])
+
+        query_l = ("L", "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE (%s IS NULL OR years LIKE %s) AND (%s IS NULL OR semester LIKE %s)) WHERE cdays LIKE %s" % (str(year), year, str(semester), str(semester), "'%L%'"))
+        query_m = ("M", "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE years LIKE %s AND semester LIKE %s) WHERE cdays LIKE %s" % (str(year), str(semester), "'%M%'"))
+        query_w = ("W", "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE years LIKE %s AND semester LIKE %s) WHERE cdays LIKE %s" % (str(year), str(semester), "'%W%'"))
+        query_j = ("J", "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE years LIKE %s AND semester LIKE %s) WHERE cdays LIKE %s" % (str(year), str(semester), "'%J%'"))
+        query_v = ("V", "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE years LIKE %s AND semester LIKE %s) WHERE cdays LIKE %s" % (str(year), str(semester), "'%V%'"))
+        query_s = ("S", "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE years LIKE %s AND semester LIKE %s) WHERE cdays LIKE %s" % (str(year), str(semester), "'%S%'"))
+        query_d = ("D", "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE years LIKE %s AND semester LIKE %s) WHERE cdays LIKE %s" % (str(year), str(semester), "'%D%'"))
+
+        result = []
+        rday = {}
+
+        for day in days_sub:
+            main_query = "SELECT COUNT(cdays) FROM (SELECT * FROM section NATURAL INNER JOIN meeting WHERE (%s IS NULL OR years LIKE %s) AND (%s IS NULL OR semester LIKE %s)) WHERE cdays LIKE %s" % (year, year, semester, semester, "'%" + day[2]  + "%'")
+            cursor = self.conn.cursor()
+            cursor.execute(main_query)
+            rday[day[2]] = cursor.fetchone()[0]
+            result.append(rday[day[2]])
+            cursor.close()
+
+#       query_list = [query_l, query_m, query_w, query_j, query_v, query_s, query_d]
+        query_list = [query_l]
+
+#       for query in query_list:
+#           cursor = self.conn.cursor()
+#           cursor.execute(query[1])
+#           rday[query[0]] = cursor.fetchone()[0]
+#           result.append(rday[query[0]])
+#           cursor.close()
+
+#       print(debug, "year & semester", result)
+            
+        return rday
+
