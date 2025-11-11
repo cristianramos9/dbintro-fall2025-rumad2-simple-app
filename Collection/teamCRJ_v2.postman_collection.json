@@ -1,0 +1,824 @@
+{
+	"info": {
+		"_postman_id": "3c480795-2000-4d18-a2c0-aaeac7a4fe28",
+		"name": "teamCRJ_v2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "49560520"
+	},
+	"item": [
+		{
+			"name": "requisite",
+			"item": [
+				{
+					"name": "GET",
+					"item": [
+						{
+							"name": "getRequisiteByIDs",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/10/37",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"10",
+										"37"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRequisiteByIDs (9,6)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/9/6",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"9",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRequisiteByIDs (9,2)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/9/2",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"9",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRequisiteByIDs (9,3)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/9/3",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"9",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "getRequisiteByIDs (9,9)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:5000/teamCRJ/requisite/9/9",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"teamCRJ",
+										"requisite",
+										"9",
+										"9"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "POST",
+					"item": [
+						{
+							"name": "insertRequisite",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"true\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "127.0.0.1:5000/teamCRJ/requisite",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"teamCRJ",
+										"requisite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "insertRequisite (9,6,false)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"9\",\n    \"reqid\" : \"6\",\n    \"prereq\" : \"false\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "insertRequisite (9,2,true)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"9\",\n    \"reqid\" : \"2\",\n    \"prereq\" : \"true\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "insertRequisite (9,3,false)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"9\",\n    \"reqid\" : \"3\",\n    \"prereq\" : \"false\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "insertRequisite (10,3,false)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"3\",\n    \"prereq\" : \"false\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "DEBUG-insertRequisite (50,45, false)",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"50\",\n    \"reqid\" : \"45\",\n    \"prereq\" : \"false\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "DELETE",
+					"item": [
+						{
+							"name": "deleteRequisiteByIDs",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/10/37",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"10",
+										"37"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRequisiteByIDs (9,5)",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/9/6",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"9",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRequisiteByIDs (9,2)",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:5000/teamCRJ/requisite/9/2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"teamCRJ",
+										"requisite",
+										"9",
+										"2"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRequisiteByIDs (9,3)",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/9/3",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"9",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRequisiteByIDs (10,6)",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/10/6",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"10",
+										"6"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRequisiteByIDs (10,37)",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"false\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/10/3",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"10",
+										"3"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "deleteRequisiteByIDs (50,45)",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"false\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/requisite/10/3",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"requisite",
+										"10",
+										"3"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "stats",
+			"item": [
+				{
+					"name": "sections-by-day",
+					"item": [
+						{
+							"name": "sections-by-day",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/sections-by-day",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"sections-by-day"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sections-by-day?year",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/sections-by-day?year=2022",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"sections-by-day"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2022"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sections-by-day?semester",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/sections-by-day?semester=Spring",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"sections-by-day"
+									],
+									"query": [
+										{
+											"key": "semester",
+											"value": "Spring"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sections-by-day?year&semester",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/sections-by-day?year=2021&semester=Fall",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"sections-by-day"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2021"
+										},
+										{
+											"key": "semester",
+											"value": "Fall"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "sections-by-day?semester&year",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"classid\" : \"10\",\n    \"reqid\" : \"37\",\n    \"prereq\" : \"true\"\n}"
+								},
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/sections-by-day?semester=Fall&year=2021",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"sections-by-day"
+									],
+									"query": [
+										{
+											"key": "semester",
+											"value": "Fall"
+										},
+										{
+											"key": "year",
+											"value": "2021"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "multi-room-classes",
+					"item": [
+						{
+							"name": "multi-room-classes",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/multi-room-classes",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"multi-room-classes"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "multi-room-classes?year",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/multi-room-classes?year=2020",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"multi-room-classes"
+									],
+									"query": [
+										{
+											"key": "year",
+											"value": "2020"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "multi-room-classes?semester",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "127.0.0.1:5000/teamCRJ/stats/multi-room-classes?semester=V2",
+									"host": [
+										"127",
+										"0",
+										"0",
+										"1"
+									],
+									"port": "5000",
+									"path": [
+										"teamCRJ",
+										"stats",
+										"multi-room-classes"
+									],
+									"query": [
+										{
+											"key": "semester",
+											"value": "V2"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "multi-room-classes?limit",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/multi-room-classes?limit=",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"multi-room-classes"
+									],
+									"query": [
+										{
+											"key": "limit",
+											"value": ""
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "multi-room-classes?orderby",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/multi-room-classes?orderby=dEsc",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"multi-room-classes"
+									],
+									"query": [
+										{
+											"key": "orderby",
+											"value": "dEsc"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "multi-room-classes?semester2",
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseURL}}/{{baseAPI}}/stats/multi-room-classes?semester=fall",
+									"host": [
+										"{{baseURL}}"
+									],
+									"path": [
+										"{{baseAPI}}",
+										"stats",
+										"multi-room-classes"
+									],
+									"query": [
+										{
+											"key": "semester",
+											"value": "fall"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"requests": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": ""
+		},
+		{
+			"key": "baseAPI",
+			"value": ""
+		}
+	]
+}
