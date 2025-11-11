@@ -4,7 +4,7 @@ PRODUCTION = 0
 
 if not PRODUCTION:
     print(debug, "==> Using Docker")
-    from config.pgconfig_docker import pg_config
+    from config.db import pg_config, get_conn
 else:
     print(debug, "==> Using Heroku")
     print(debug, "Verify import code is uncommented!")
@@ -15,19 +15,31 @@ import psycopg2
 class RequisiteDAO:
     def __init__(self):
         # initialize database
-        connect_url = "dbname=%s \
-                       user=%s \
-                       password=%s \
-                       host=%s \
-                       port=%s" % \
-                      (pg_config['dbname'], \
+#       connect_url = "dbname=%s \
+#                      user=%s \
+#                      password=%s \
+#                      host=%s \
+#                      port=%s" % \
+#                     (pg_config['dbname'], \
+#                      pg_config['user'], \
+#                      pg_config['password'], \
+#                      pg_config['host'], \
+#                      pg_config['port'])
+
+#       connect_url = {"dbname" : pg_config['dbname'], \
+#                     "user" : pg_config['user'], \
+#                     "password" : pg_config['password'], \
+#                     "host" : pg_config['host'], \
+#                     "port" : pg_config['port']} 
+        # connect to database
+#       self.conn = psycopg2.connect(connect_url)
+        self.conn = get_conn( \
+                       pg_config['dbname'], \
                        pg_config['user'], \
                        pg_config['password'], \
                        pg_config['host'], \
                        pg_config['port'])
-
-        # connect to database
-        self.conn = psycopg2.connect(connect_url)
+#       self.conn = get_conn(connect_url)
 
         # test connection by getting database version
         if not PRODUCTION:

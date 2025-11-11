@@ -4,7 +4,7 @@ PRODUCTION = 0
 
 if not PRODUCTION:
     print(debug, "==> Using Docker")
-    from config.pgconfig_docker import pg_config
+    from config.db import pg_config, get_conn
 else:
     print(debug, "==> Using Heroku")
     print(debug, "Verify import code is uncommented!")
@@ -15,18 +15,24 @@ import psycopg2
 class SectionsByDayDAO:
     def __init__(self):
         # initialize database
-        connect_url = "dbname=%s \
-                       user=%s \
-                       password=%s \
-                       host=%s \
-                       port=%s" % \
-                      (pg_config['dbname'], \
+#       connect_url = "dbname=%s \
+#                      user=%s \
+#                      password=%s \
+#                      host=%s \
+#                      port=%s" % \
+#                     (pg_config['dbname'], \
+#                      pg_config['user'], \
+#                      pg_config['password'], \
+#                      pg_config['host'], \
+#                      pg_config['port']) 
+
+        self.conn = get_conn( \
+                       pg_config['dbname'], \
                        pg_config['user'], \
                        pg_config['password'], \
                        pg_config['host'], \
-                       pg_config['port']) 
-
-        self.conn = psycopg2.connect(connect_url)
+                       pg_config['port'])
+#       self.conn = psycopg2.connect(connect_url)
 
         if not PRODUCTION:
             cursor = self.conn.cursor()
