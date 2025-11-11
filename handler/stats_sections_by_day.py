@@ -5,7 +5,6 @@ from dao.stats_sections_by_day import SectionsByDayDAO
 debug = "DEBUG:"
 
 class SectionsByDayHandler:
-    semester_list = ("Fall", "Spring", "V1", "V2")
 #   def getSectionsByDay(self):
 #       dao = SectionsByDayDAO()
 #       days = ['L','M','W','J','V','S','D']
@@ -70,11 +69,18 @@ class SectionsByDayHandler:
     # gets count with or without query parameters
     def getSectionsByDayUsingParameter(self, year=None, semester=None):
         if year != None:
+            # validate year
             if len(year) != 4 or not year.isnumeric():
                 return jsonify(Error = "Bad Request"), 400
         if semester != None:
-            if semester not in self.semester_list:
+            # validate semester
+            if not semester.isalnum() or semester.lower() not in ['fall', 'spring', 'v1', 'v2']:
                 return jsonify(Error = "Bad Request"), 400
+            semester = semester[0].upper() + semester[1:]
+            
+#           semester_list = ()
+#           if semester not in ["fall", "spring", "v1", "v2"]:
+#               return jsonify(Error = "Bad Request"), 400
 
 
         dao = SectionsByDayDAO()
