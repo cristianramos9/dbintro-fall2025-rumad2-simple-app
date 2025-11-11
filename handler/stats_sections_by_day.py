@@ -90,5 +90,5 @@ class SectionsByDayHandler:
             wday = { "day" : day, "sections" : result[day] }
             result_list.append(wday)
 
-        return jsonify(result_list)
+        return jsonify(result_list), 200
 

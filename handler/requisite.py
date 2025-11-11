@@ -66,7 +66,7 @@ class RequisiteHandler:
             result = self.mapRequisite(temp)
             print(pk)
 
-            return jsonify(result)
+            return jsonify(result), 201
         else:
             return jsonify(Error = "Bad Request"), 400
 
@@ -82,7 +82,7 @@ class RequisiteHandler:
         if not requisite:
             return jsonify(Error = "Not Found"), 404
         else:
-            return jsonify(self.mapRequisite(requisite))
+            return jsonify(self.mapRequisite(requisite)), 200
 
 
     # called by method DELETE for endpoint '/requisite/{classid}/{reqid}'
@@ -94,7 +94,7 @@ class RequisiteHandler:
         temp = dao.deleteRequisiteByIDs(classid, reqid)
 
         if temp:
-            return jsonify(DeleteStatus = "OK"), 200
+            return jsonify(DeleteStatus = "OK"), 204
         else:
             return jsonify(DeleteStatus = "Not Found"), 404
 
