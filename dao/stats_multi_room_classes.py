@@ -47,3 +47,41 @@ class MultiRoomClassesDAO:
             result.append(item)
 
         return result
+
+
+    def getMultiRoomClassesUsingParameter(self, year, semester, limit, orderby):
+        print(year, semester)
+        if year:
+            year = "'" + year + "'"
+        else:
+            year = 'NULL'
+        if semester:
+            semester = "'" + semester + "'"
+        else:
+            semester = 'NULL'
+#       if limit:
+#           limit = "'" + limit + "'"
+#       else:
+#           limit = 'NULL'
+#       if orderby:
+#           orderby = "'" + orderby + "'"
+#       else:
+#           orderby = 'NULL'
+
+        result = []
+        cursor = self.conn.cursor()
+        query = "SELECT class.cid, cname, ccode, COUNT(DISTINCT rid) FROM section INNER JOIN room ON section.roomid = room.rid INNER JOIN class ON section.cid = class.cid WHERE (%s IS NULL OR section.years LIKE %s) AND (%s IS NULL OR section.semester LIKE %s) GROUP BY class.cid, cname, ccode" % (year, year, semester, semester)
+        if orderby:
+            query = query + " ORDER BY cid %s" % orderby
+            print(query)
+        if limit:
+            query = query + " LIMIT %s" % limit
+            print(query)
+        cursor.execute(query)
+#       result = cursor.fetchone()
+        for item in cursor:
+            result.append(item)
+
+        print(debug, result)
+
+        return result

@@ -66,26 +66,17 @@ def getMultiRoomClasses():
     limit = request.args.get('limit')
     orderby = request.args.get('orderby')
 
-    if year and not semester and not limit and not orderby:
-        return "year only"
-    elif not year and semester and not limit and not orderby:
-        return "semester only"
-    elif year and not semester and limit and not orderby:
-        return "limit only"
-    elif year and not semester and not limit and orderby:
-        return "orderby only"
-#   elif year and not semester and not limit and not orderby:
-#       return "year only"
-#   elif year and not semester and not limit and not orderby:
-#       return "year only"
-#   elif year and not semester and not limit and not orderby:
-#       return "year only"
+    print("DEBUG: year:", year)
+    print("DEBUG: semester:", semester)
+    print("DEBUG: limit:", limit)
+    print("DEBUG: orderby:", orderby)
+
+    # check if at least one of the query parameters is not null
+    if year or semester:
+        return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)
     else:
         return MultiRoomClassesHandler().getAllMultiRoomClasses()
 
-#   tmp_results = [{}]
-#   return jsonify(results = tmp_results)
-#   return jsonify([year, semester])
 
 if __name__ == '__main__':
     app.run(debug=True)
