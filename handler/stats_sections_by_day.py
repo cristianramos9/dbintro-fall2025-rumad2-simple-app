@@ -1,8 +1,29 @@
-from flask import jsonify
+from flask import request, jsonify, Blueprint
 
 from dao.stats_sections_by_day import SectionsByDayDAO
 
 debug = "DEBUG:"
+bp = Blueprint("stat_sections_by_day", __name__)
+method_list = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
+
+# ROUTE
+
+@bp.route('/stats/sections-by-day', methods=method_list)
+def getSectionsByDay():
+    if request.method == 'GET':
+        # get arguments passed to endpoint
+        year = request.args.get('year')
+        semester = request.args.get('semester')
+
+        print(year)
+        print(semester)
+        print(year, semester)
+
+        return SectionsByDayHandler().getSectionsByDayUsingParameter(year, semester)
+    else:
+        return jsonify(Error = "Method Not Allowed"), 405
+
+# HANDLER
 
 class SectionsByDayHandler:
 #   def getSectionsByDay(self):

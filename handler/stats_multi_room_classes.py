@@ -1,8 +1,33 @@
-from flask import jsonify
+from flask import request, jsonify, Blueprint
 
 from dao.stats_multi_room_classes import MultiRoomClassesDAO
 
+debug = "DEBUG:"
+bp = Blueprint("stat_multi_room_classes", __name__)
+method_list = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
 
+# ROUTE
+
+# get unique rooms for each class
+@bp.route('/stats/multi-room-classes', methods=method_list)
+def getMultiRoomClasses():
+    if request.method == 'GET':
+        # get arguments passed to endpoint
+        year = request.args.get('year')
+        semester = request.args.get('semester')
+        limit = request.args.get('limit')
+        orderby = request.args.get('orderby')
+
+        print("DEBUG: year:", year)
+        print("DEBUG: semester:", semester)
+        print("DEBUG: limit:", limit, type(limit))
+        print("DEBUG: orderby:", orderby)
+
+        return MultiRoomClassesHandler().getMultiRoomClassesUsingParameter(year, semester, limit, orderby)
+    else:
+        return jsonify(Error = "Method Not Allowed"), 405
+
+# HANDLER
 
 class MultiRoomClassesHandler:
 #   def getAllMultiRoomClasses(self):

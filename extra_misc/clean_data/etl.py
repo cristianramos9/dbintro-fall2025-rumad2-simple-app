@@ -76,7 +76,7 @@ if DEBUG:
 debug = "DEBUG:"
 print("===DATABASE======================================")
 if not PRODUCTION:
-    db_info_path = "../ReadMe.docker"
+    db_info_path = "../../ReadMe.docker"
     print(debug, "==> Reading Docker credentials.")
 else:
     db_info_path = "../ReadMe"

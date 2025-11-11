@@ -1,8 +1,32 @@
-from flask import jsonify
+from flask import request, jsonify, Blueprint
 
 from dao.requisite import RequisiteDAO
 
 debug = "DEBUG:"
+bp = Blueprint("requisite", __name__)
+method_list = ['GET', 'POST', 'PUT', 'DELETE', 'PATCH']
+
+# ROUTES
+
+# route for inserting new requisite
+@bp.route('/requisite', methods=method_list)
+def insertRequisite():
+    if request.method == 'POST':
+        return RequisiteHandler().insertRequisite(request.json)
+    else:
+        return jsonify(Error = "Method Not Allowed"), 405
+
+# route for requesting and deleting requisite
+@bp.route('/requisite/<int:classid>/<int:reqid>', methods=method_list)
+def getRequisiteByIDs(classid, reqid):
+    if request.method == 'GET':
+        return RequisiteHandler().getRequisiteByIDs(classid, reqid)
+    elif request.method == 'DELETE':
+        return RequisiteHandler().deleteRequisiteByIDs(classid, reqid)
+    else:
+        return jsonify(Error = "Method Not Allowed"), 405
+
+# HANDLER
 
 class RequisiteHandler:
     def mapRequisite(self, req):
@@ -65,6 +89,7 @@ class RequisiteHandler:
             temp = (classid, reqid, prereq)
             result = self.mapRequisite(temp)
             print(pk)
+            print(debug, "inserted:", result)
 
             return jsonify(result), 201
         else:
@@ -91,10 +116,13 @@ class RequisiteHandler:
             return jsonify(Error = "Conflict"), 409
 
         dao = RequisiteDAO()
-        temp = dao.deleteRequisiteByIDs(classid, reqid)
+        deleted = dao.deleteRequisiteByIDs(classid, reqid)
 
-        if temp:
-            return jsonify(DeleteStatus = "OK"), 204
+        print(debug, "deleted:", deleted)
+
+        if deleted:
+#           return jsonify(DeleteStatus = "OK"), 204
+            return jsonify(DeleteStatus = "No Content", Deleted = deleted), 204
         else:
             return jsonify(DeleteStatus = "Not Found"), 404
 
